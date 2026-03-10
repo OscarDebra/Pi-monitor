@@ -4,6 +4,8 @@ import psutil
 
 app = FastAPI()
 
+
+# Tells FastAPI to allow requests from anywhere tells FastAPI to allow requests from anywhere (* means anywhere)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -11,6 +13,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Get the CPU temp from a file inside of the Pi OS, it returns the data in millidegrees so we divide by 1000.
 def get_cpu_temp():
     try:
         with open("/sys/class/thermal/thermal_zone0/temp") as f:
@@ -18,7 +21,9 @@ def get_cpu_temp():
     except:
         return None
 
-@app.get("/api/stats")
+
+
+@app.get("/api/stats") # When someone visits api/stats, run following function.
 def get_stats():
     ram = psutil.virtual_memory()
     disk = psutil.disk_usage("/")
