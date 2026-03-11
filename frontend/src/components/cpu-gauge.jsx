@@ -13,8 +13,9 @@ export default function CpuGauge({cpu_temp}) {
   const data = {
     datasets: [{
         data: [cpu_temp, 100 - cpu_temp],
-        backgroundColor: ["#f87171", "#000000"],
-        borderWidth: 0,
+        backgroundColor: ["#fc6400", "#000000"],
+        borderWidth: 4,
+        borderColor: "#474747",
       },
     ],
 
@@ -24,13 +25,64 @@ export default function CpuGauge({cpu_temp}) {
     responsive: true,
     circumference: 270,
     rotation: 225,
+    radius: 200,
+    cutout: "70%",
+    events: [],
+    hover: { mode: null },
     plugins: {
       legend: { position: "bottom" },
     },
+    tooltip: { enabled: false },
   };
 
-  return <Doughnut 
-    data={data} 
-    options={options} 
-  />;
+  return (
+    <div style={{
+        border: "3px solid #474747",
+        backgroundColor: "#171717"
+    }}> 
+    
+        {/*Title text */}
+        <p style={{
+            margin: "0",
+            fontSize: "24px", 
+            color: "#ffffff",
+        }}> CPU </p>
+
+        {/* donut and temp text div */}
+        <div style={{
+            position: "relative",
+            margin: "0 auto",
+        }}> 
+
+            {/* donut */}
+            <Doughnut 
+                data={data} 
+                options={options} 
+            />;
+
+            {/* temp text */}
+            <div style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translateX(-50%) translateY(-50%)",
+                textAlign: "center",
+                color: "#ffffff",
+            }}>
+                <p style={{ 
+                    margin: 0, 
+                    fontSize: "20px", 
+                    fontWeight: "bold" 
+                }}> {cpu_temp}°C </p>
+            </div>
+        </div>
+
+        {/* Util text */}
+        <p style={{ margin: 0, 
+            textAlign: "center", 
+            fontSize: "12px", 
+            color: "#ffffff" 
+        }}> Normal </p>
+    </div>
+  );
 }
