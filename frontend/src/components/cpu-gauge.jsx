@@ -13,14 +13,17 @@ export default function CpuGauge({cpu_temp}) {
   const data = {
     datasets: [{
         data: [cpu_temp, 100 - cpu_temp],
-        backgroundColor: ["#f87171", "#4ade80"],
+        backgroundColor: ["#f87171", "#000000"],
         borderWidth: 0,
       },
     ],
+
   };
 
   const options = {
     responsive: true,
+    circumference: 180,
+    rotation: -90,
     plugins: {
       legend: { position: "bottom" },
     },
