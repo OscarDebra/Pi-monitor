@@ -3,6 +3,8 @@ services:
     build: ./backend
     container_name: backend
     restart: unless-stopped
+    ports:
+      - "8000:8000"
 
   frontend:
     build: ./frontend
