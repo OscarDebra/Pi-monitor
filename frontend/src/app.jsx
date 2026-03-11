@@ -24,7 +24,9 @@ function App() {
       ) : (
         <p>Loading...</p>
       )}
-      <CpuGauge />
+      <CpuGauge 
+        cpu_temp={stats ? stats.cpu_temp : 0}
+      />
     </div>
   );
 }

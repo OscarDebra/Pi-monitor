@@ -9,11 +9,10 @@ import {Doughnut} from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function CpuGauge() {
+export default function CpuGauge({cpu_temp}) {
   const data = {
-    labels: ["Used", "Free"],
     datasets: [{
-        data: [65, 35],
+        data: [cpu_temp, 100 - cpu_temp],
         backgroundColor: ["#f87171", "#4ade80"],
         borderWidth: 0,
       },
