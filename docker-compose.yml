@@ -6,8 +6,6 @@ services:
 
   frontend:
     build: ./frontend
-    mem_limit: 4g
-    memswap_limit: 4g
     container_name: frontend
     ports:
       - "80:80"
