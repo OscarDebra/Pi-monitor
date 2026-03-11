@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import CpuGauge from './components/cpu-gauge';
+
 function App() {
   const [stats, setStats] = useState(null);
 
@@ -22,6 +24,7 @@ function App() {
       ) : (
         <p>Loading...</p>
       )}
+      <CpuGauge />
     </div>
   );
 }
