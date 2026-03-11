@@ -22,8 +22,8 @@ export default function CpuGauge({cpu_temp}) {
 
   const options = {
     responsive: true,
-    circumference: 230,
-    rotation: -40,
+    circumference: 270,
+    rotation: 180,
     plugins: {
       legend: { position: "bottom" },
     },
