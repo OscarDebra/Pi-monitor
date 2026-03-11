@@ -17,7 +17,7 @@ app.add_middleware(
 def get_cpu_temp():
     try:
         with open("/sys/class/thermal/thermal_zone0/temp") as f:
-            return round(int(f.read()) / 1000, 1)
+            return round(int(f.read()) / 1000, 0)
     except:
         return None
 
