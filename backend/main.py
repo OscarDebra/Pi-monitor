@@ -29,7 +29,7 @@ def get_stats():
     disk = psutil.disk_usage("/")
     net = psutil.net_io_counters()
     return {
-        "cpu_percent": psutil.cpu_percent(interval=1),
+        "cpu_percent": round(psutil.cpu_percent(interval=1), 0),
         "cpu_temp": get_cpu_temp(),
         "ram_total": round(ram.total / 1024**2),
         "ram_percent": ram.percent,
