@@ -9,7 +9,7 @@ import {Doughnut} from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function CpuGauge({cpu_temp}) {
+export default function CpuGauge({cpu_temp, cpu_percent}) {
   const data = {
     datasets: [{
         data: [cpu_temp, 100 - cpu_temp],
@@ -25,7 +25,6 @@ export default function CpuGauge({cpu_temp}) {
     responsive: true,
     circumference: 270,
     rotation: 225,
-    radius: 200,
     cutout: "70%",
     events: [],
     hover: { mode: null },
@@ -38,7 +37,9 @@ export default function CpuGauge({cpu_temp}) {
   return (
     <div style={{
         border: "3px solid #474747",
-        backgroundColor: "#171717"
+        backgroundColor: "#171717",
+        width: "100%",
+        aspectRatio: "1",
     }}> 
     
         {/*Title text */}
@@ -52,15 +53,16 @@ export default function CpuGauge({cpu_temp}) {
         <div style={{
             position: "relative",
             margin: "0 auto",
+            width: "80%",
         }}> 
 
-            {/* donut */}
+            {/* Horseshoe thermostat thing */}
             <Doughnut 
                 data={data} 
                 options={options} 
-            />;
+            />
 
-            {/* temp text */}
+            {/* temperature text */}
             <div style={{
                 position: "absolute",
                 top: "50%",
@@ -77,12 +79,12 @@ export default function CpuGauge({cpu_temp}) {
             </div>
         </div>
 
-        {/* Util text */}
+        {/* Utilization text */}
         <p style={{ margin: 0, 
             textAlign: "center", 
             fontSize: "12px", 
             color: "#ffffff" 
-        }}> Normal </p>
+        }}> {cpu_percent}% utilization </p>
     </div>
   );
 }

@@ -16,16 +16,19 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+
   return (
-    <div>
-      <h1>Pi Monitor</h1>
-      {stats ? (
-        <pre>{JSON.stringify(stats, null, 2)}</pre>
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+      gap: "16px",
+      padding: "16px",
+      maxWidth: "300px",
+      margin: "0 auto",
+    }}>
       <CpuGauge 
         cpu_temp={stats ? stats.cpu_temp : 0}
+        cpu_percent={stats ? stats.cpu_percent : 0}
       />
     </div>
   );
