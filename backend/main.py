@@ -32,7 +32,7 @@ def get_stats():
         "cpu_percent": round(psutil.cpu_percent(interval=1), 0),
         "cpu_temp": get_cpu_temp(),
         "ram_total": round(ram.total / 1024**2),
-        "ram_percent": round(int(ram.percent)),
+        "ram_percent": round((ram.percent)),
         "disk_used": round(disk.used / 1024**3, 1),
         "disk_total": round(disk.total / 1024**3, 1),
     }
