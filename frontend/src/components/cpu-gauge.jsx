@@ -6,10 +6,23 @@ import {Chart as
 } from "chart.js";
 
 import {Doughnut} from "react-chartjs-2";
+import { useState, useEffect } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function CpuGauge({cpu_temp, cpu_percent}) {
+export default function CpuGauge({ cpu_temp, cpu_percent }) {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    let timeout;
+    const handleResize = () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => setWindowWidth(window.innerWidth), 200);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const data = {
     datasets: [{
         data: [cpu_temp, 100 - cpu_temp],
@@ -38,12 +51,14 @@ export default function CpuGauge({cpu_temp, cpu_percent}) {
     <div style={{
         border: "3px solid #474747",
         backgroundColor: "#171717",
-        width: "100%",
+        maxWidth: "400px",
         aspectRatio: "1",
+        boxSizing: "border-box",
         display: "flex",
+        flex: 1,
         flexDirection: "column",
         justifyContent: "space-between",
-        padding: 10,
+        padding: "10px",
     }}> 
     
         {/* Top row */}
@@ -63,8 +78,11 @@ export default function CpuGauge({cpu_temp, cpu_percent}) {
         <div style={{
             position: "relative",
             margin: "0 auto",
+            width: "80%",
+            minHeight: 0,
+            flex: 1,
         }}>
-            <Doughnut data={data} options={options} />
+            <Doughnut key={windowWidth} data={data} options={options} />
             <div style={{
                 position: "absolute",
                 top: "50%",
