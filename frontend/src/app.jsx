@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import CpuGauge from './components/cpu-gauge';
+import RamGauge from './components/ram-gauge';
 
 function App() {
   const [stats, setStats] = useState(null);
@@ -29,6 +30,10 @@ function App() {
       <CpuGauge 
         cpu_temp={stats ? stats.cpu_temp : 0}
         cpu_percent={stats ? stats.cpu_percent : 0}
+      />
+      <RamGauge 
+        ram_total={stats ? stats.ram_total : 0} 
+        ram_percent={stats ? stats.ram_percent : 0} 
       />
     </div>
   );

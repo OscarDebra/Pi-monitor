@@ -14,7 +14,7 @@ export default function CpuGauge({cpu_temp, cpu_percent}) {
     datasets: [{
         data: [cpu_temp, 100 - cpu_temp],
         backgroundColor: ["#fc6400", "#000000"],
-        borderWidth: 4,
+        borderWidth: 2,
         borderColor: "#474747",
       },
     ],
@@ -40,29 +40,31 @@ export default function CpuGauge({cpu_temp, cpu_percent}) {
         backgroundColor: "#171717",
         width: "100%",
         aspectRatio: "1",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: 10,
     }}> 
     
-        {/*Title text */}
-        <p style={{
-            margin: "0",
-            fontSize: "24px", 
-            color: "#ffffff",
-        }}> CPU </p>
+        {/* Top row */}
+        <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+        }}>
+            <p style={{
+                margin: "0",
+                fontSize: "24px",
+                color: "#ffffff",
+            }}>CPU</p>
+        </div>
 
         {/* donut and temp text div */}
         <div style={{
             position: "relative",
             margin: "0 auto",
-            width: "80%",
-        }}> 
-
-            {/* Horseshoe thermostat thing */}
-            <Doughnut 
-                data={data} 
-                options={options} 
-            />
-
-            {/* temperature text */}
+        }}>
+            <Doughnut data={data} options={options} />
             <div style={{
                 position: "absolute",
                 top: "50%",
@@ -71,20 +73,21 @@ export default function CpuGauge({cpu_temp, cpu_percent}) {
                 textAlign: "center",
                 color: "#ffffff",
             }}>
-                <p style={{ 
-                    margin: 0, 
-                    fontSize: "20px", 
-                    fontWeight: "bold" 
-                }}> {cpu_temp}°C </p>
+                <p style={{
+                    margin: 0,
+                    fontSize: "20px",
+                    fontWeight: "bold"
+                }}>{cpu_temp}°C</p>
             </div>
         </div>
 
         {/* Utilization text */}
-        <p style={{ margin: 0, 
-            textAlign: "center", 
-            fontSize: "12px", 
-            color: "#ffffff" 
-        }}> {cpu_percent}% utilization </p>
+        <p style={{
+            margin: 0,
+            textAlign: "center",
+            fontSize: "12px",
+            color: "#ffffff"
+        }}>{cpu_percent}% utilization</p>
     </div>
   );
 }
