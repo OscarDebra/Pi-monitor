@@ -81,12 +81,6 @@ git pull
 docker compose up --build -d
 ```
 
-## Security
-- HTTPS enforced via self-signed SSL certificate
-- HTTP requests are redirected to HTTPS
-- Dashboard protected by HTTP basic authentication
-- In production, replace the self-signed certificate with one from Let's Encrypt
-
 ## Stopping and starting
 ```bash
 # Stop

@@ -23,5 +23,5 @@ Viser hvor mye lagringsplass som er brukt og hvor mye som er ledig. Dersom diske
 
 ## Feilsøking
 - **Siden laster ikke**: Sjekk at du er på samme nettverk som Raspberry Pi-en, eller bytt nettleser
-- **Feil brukernavn/passord**: Kontakt systemadministrator
+- **Feil brukernavn/passord**: Kontakt systemadministrator for å få egen bruker
 - **Dataene oppdateres ikke**: Prøv å laste siden på nytt
