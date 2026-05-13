@@ -48,7 +48,7 @@ htpasswd -c frontend/auth/.htpasswd yourusername
 docker compose up -d
 ```
 
-The dashboard is now available at `https://pimonitor.local`.
+The dashboard is now available at `https://[ip]`.
 
 ## Architecture
 ```
