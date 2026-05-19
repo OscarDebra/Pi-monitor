@@ -77,7 +77,7 @@ def save_stats(stats):
 
     conn.commit()
     conn.close()
-    
+
 
 
 @app.get("/api/stats") # When someone visits api/stats, run following function.
@@ -103,6 +103,7 @@ def get_stats():
 @app.get("/api/history")
 def get_history(limit: int = 10):
     conn = sqlite3.connect("stats.db")
+    conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -114,7 +115,7 @@ def get_history(limit: int = 10):
     rows = cursor.fetchall()
     conn.close()
 
-    return rows
+    return [dict(row) for row in rows]
 
 
 
