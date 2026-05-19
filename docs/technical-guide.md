@@ -1,7 +1,7 @@
 # Pi Monitor – Technical Setup Guide
 
 ## Overview
-Pi Monitor is a self-hosted system monitoring dashboard running on a Raspberry Pi. It consists of two Docker containers — a Python FastAPI backend and a React frontend served by Nginx — communicating over a Docker bridge network.
+Pi Monitor is a self-hosted system monitoring dashboard running on a Raspberry Pi. It consists of two Docker containers — a Python FastAPI backend with a small sqlite database and a React frontend served by Nginx — communicating over a Docker bridge network.
 
 ## Requirements
 - Raspberry Pi 3B+ or newer
@@ -63,7 +63,8 @@ The dashboard is now available at `https://[ip]`.
 
 | Endpoint | Method | Description |
 |---|---|---|
-| `/api/stats` | GET | Returns CPU, RAM, disk and network stats |
+| `/api/stats` | GET | Returns CPU, RAM and disk |
+| `/api/history` | GET | Returns last 10 datasets |
 
 ## Development Workflow
 The React app is built on a development machine and committed to the repository. The Pi never runs `npm install` or `npm run build`.
